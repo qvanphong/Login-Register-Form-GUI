@@ -15,36 +15,37 @@ import javax.swing.JFrame;
 public class LoginForm extends javax.swing.JFrame implements ArrayListChecker{
 //private IOpenRegister openRegis;
 ArrayList<AccInformation> arrList;
-   @Override
-    public boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList) {
-        if(find(username, email, arrList)){//Co ton tai tai khoan
-            //Show error dialog
-            System.out.println("Error");
-            return false;
-        }
-        return true;
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean find(String userName, String email, ArrayList<AccInformation> arrList) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        for(AccInformation a : arrList ){
-            if(a.getUsername().equals(userName)){
-                //Show username already taken dialog
-                //wip
-                System.out.println("Exist in database.");
-                return true;
-            }
-            if(a.getEmail().equals(email)){
-                //Show email already taken dialog
-                //wip
-                System.out.println("Exist in database.");
-                return true;
-            }
-        }
-        return false;
-    }
+static AccountData accData;
+//   @Override
+//    public boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList) {
+//        if(find(username, email, arrList)){//Co ton tai tai khoan
+//            //Show error dialog
+//            System.out.println("Error");
+//            return false;
+//        }
+//        return true;
+////        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public boolean find(String userName, String email, ArrayList<AccInformation> arrList) {
+////        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        for(AccInformation a : arrList ){
+//            if(a.getUsername().equals(userName)){
+//                //Show username already taken dialog
+//                //wip
+//                System.out.println("Exist in database.");
+//                return true;
+//            }
+//            if(a.getEmail().equals(email)){
+//                //Show email already taken dialog
+//                //wip
+//                System.out.println("Exist in database.");
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList) {
@@ -60,8 +61,8 @@ ArrayList<AccInformation> arrList;
 //    ArrayList<AccInformation> acc = AccountData
    
     
-    public LoginForm(ArrayList<AccInformation> arrList1) {
-        arrList = arrList1;
+    public LoginForm() {
+//        arrList = arrList1;
 //            this.openRegis = openRegist;
         initComponents();
        
@@ -513,7 +514,7 @@ ArrayList<AccInformation> arrList;
             loginErrorDialog.setTitle("Error");
             loginErrorDialog.pack();
             loginErrorDialog.setLocationRelativeTo(null);
-            for(AccInformation a : arrList){
+            for(AccInformation a : accData.getArrList()){
                 System.out.println(a.getUsername()+ " " + a.getPassword());
             }
         }else{
@@ -521,7 +522,7 @@ ArrayList<AccInformation> arrList;
 //            int confirmLogin = 0;
 //            
             
-                if(findInDatabase(usernameTextField.getText(), PasswordField.getText(), arrList)){
+                if(findInDatabase(usernameTextField.getText(), PasswordField.getText(), accData.getArrList())){
 //                    RegisterForm registerForm = new RegisterForm(arrList);
 //                    registerForm.setVisible(true);
 //                    registerForm.pack();
@@ -584,7 +585,7 @@ ArrayList<AccInformation> arrList;
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-         RegisterForm registerForm = new RegisterForm(arrList);
+         RegisterForm registerForm = new RegisterForm(accData);
                     registerForm.setVisible(true);
                     registerForm.pack();
                     registerForm.setLocationRelativeTo(null);
@@ -622,8 +623,8 @@ ArrayList<AccInformation> arrList;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ArrayList<AccInformation> arrAcc = new ArrayList<>();
-                new LoginForm(arrAcc).setVisible(true);
+                accData = new AccountData();
+                new LoginForm().setVisible(true);
             }
         });
     }

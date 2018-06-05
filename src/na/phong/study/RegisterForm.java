@@ -11,44 +11,14 @@ import java.util.ArrayList;
  *
  * @author qvanphong
  */
-public class RegisterForm extends javax.swing.JFrame implements ArrayListChecker{
+public class RegisterForm extends javax.swing.JFrame {
 
-    @Override
-    public boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList) {
-        if(find(username, email, arrList)){//Co ton tai tai khoan
-            //Show error dialog
-            System.out.println("Error while adding new account.");
-            return false;
-        }
-        return true;
+//    
+//    @Override
+//    public boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean find(String userName, String email, ArrayList<AccInformation> arrList) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        for(AccInformation a : arrList ){
-            if(a.getUsername().equals(userName)){
-                //Show username already taken dialog
-                //wip
-                System.out.println("Username already exist in database.");
-                return true;
-            }
-            if(a.getEmail().equals(email)){
-                //Show email already taken dialog
-                //wip
-                System.out.println("Email already exist in database.");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    ArrayList<AccInformation> arrList;
+//    }
+    AccountData accData;
 //     LoginForm loginForm = new LoginForm();
     /**
      * Creates new form Register
@@ -60,8 +30,9 @@ public class RegisterForm extends javax.swing.JFrame implements ArrayListChecker
 //        return arrAccounts;
 //    }
     
-    public RegisterForm(ArrayList<AccInformation> arr) {
-        arrList = arr;
+    public RegisterForm(AccountData existAccData) {
+//        arrList = arr;
+        accData = existAccData;
         initComponents();
     }
 
@@ -325,8 +296,8 @@ public class RegisterForm extends javax.swing.JFrame implements ArrayListChecker
         if(acceptTermCheckBox.isSelected() && !usernameTextField.getText().equals("") && !fullNameTextField.getText().equals("")
                 && !jPasswordField1.getText().equals("") && !jPasswordField2.getText().equals("") && !emailTextField.getText().equals("")
                 && (jPasswordField1.getText().equals(jPasswordField2.getText()))){
-            if(add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText(), arrList)){
-                    arrList.add(new AccInformation(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText()));
+            if(!accData.find(usernameTextField.getText(), emailTextField.getText())){
+                    accData.add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText());
                     System.out.println("added");
             }
             
@@ -352,7 +323,7 @@ public class RegisterForm extends javax.swing.JFrame implements ArrayListChecker
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
     
-            LoginForm lgf = new LoginForm(arrList);
+        LoginForm lgf = new LoginForm();
         lgf.setVisible(true);
         lgf.pack();
         lgf.setLocationRelativeTo(null);
