@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public interface ArrayListChecker {
 //    boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList);
 //    boolean find(String userName, String email, ArrayList<AccInformation> arrList);
+
     boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList);
-    
+
 }
