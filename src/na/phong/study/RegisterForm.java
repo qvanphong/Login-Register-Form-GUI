@@ -5,24 +5,63 @@
  */
 package na.phong.study;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author qvanphong
  */
-public class RegisterForm extends javax.swing.JFrame {
+public class RegisterForm extends javax.swing.JFrame implements ArrayListChecker{
+
+    @Override
+    public boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList) {
+        if(find(username, email, arrList)){//Co ton tai tai khoan
+            //Show error dialog
+            System.out.println("Error while adding new account.");
+            return false;
+        }
+        return true;
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean find(String userName, String email, ArrayList<AccInformation> arrList) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(AccInformation a : arrList ){
+            if(a.getUsername().equals(userName)){
+                //Show username already taken dialog
+                //wip
+                System.out.println("Username already exist in database.");
+                return true;
+            }
+            if(a.getEmail().equals(email)){
+                //Show email already taken dialog
+                //wip
+                System.out.println("Email already exist in database.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    ArrayList<AccInformation> arrList;
 //     LoginForm loginForm = new LoginForm();
     /**
      * Creates new form Register
      */
 //    private LoginForm lgl ;
 //    private AccountData acc = ;
-      private AccountData arrAccounts;
 
-    public AccountData getArr(){
-        return arrAccounts;
-    }
+//    public AccountData getArr(){
+//        return arrAccounts;
+//    }
     
-    public RegisterForm() {
+    public RegisterForm(ArrayList<AccInformation> arr) {
+        arrList = arr;
         initComponents();
     }
 
@@ -98,11 +137,11 @@ public class RegisterForm extends javax.swing.JFrame {
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblMinimize)
-                        .addComponent(lblClose)))
+                        .addComponent(lblClose))
+                    .addComponent(lblTitle))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -164,6 +203,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jPasswordField2.setForeground(new java.awt.Color(51, 51, 51));
 
         acceptTermCheckBox.setBackground(new java.awt.Color(34, 49, 63));
+        acceptTermCheckBox.setForeground(new java.awt.Color(204, 204, 204));
         acceptTermCheckBox.setText("I accept all tùm lum tùm la");
 
         btnSignUp.setBackground(new java.awt.Color(89, 171, 227));
@@ -285,8 +325,10 @@ public class RegisterForm extends javax.swing.JFrame {
         if(acceptTermCheckBox.isSelected() && !usernameTextField.getText().equals("") && !fullNameTextField.getText().equals("")
                 && !jPasswordField1.getText().equals("") && !jPasswordField2.getText().equals("") && !emailTextField.getText().equals("")
                 && (jPasswordField1.getText().equals(jPasswordField2.getText()))){
-//                    arrAccounts.add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText());
-                    
+            if(add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText(), arrList)){
+                    arrList.add(new AccInformation(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText()));
+                    System.out.println("added");
+            }
             
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
@@ -309,49 +351,50 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-            LoginForm lgf = new LoginForm();
-
+    
+            LoginForm lgf = new LoginForm(arrList);
         lgf.setVisible(true);
         lgf.pack();
         lgf.setLocationRelativeTo(null);
+//    isDispose = true;
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
-
+    public boolean isDispose = false;
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegisterForm().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RegisterForm().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acceptTermCheckBox;

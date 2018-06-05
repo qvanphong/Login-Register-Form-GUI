@@ -12,19 +12,59 @@ import javax.swing.JFrame;
  *
  * @author qvanphong
  */
-public class LoginForm extends javax.swing.JFrame {
+public class LoginForm extends javax.swing.JFrame implements ArrayListChecker{
+//private IOpenRegister openRegis;
+ArrayList<AccInformation> arrList;
+   @Override
+    public boolean add(String fullName, String username, String password, String email , ArrayList<AccInformation> arrList) {
+        if(find(username, email, arrList)){//Co ton tai tai khoan
+            //Show error dialog
+            System.out.println("Error");
+            return false;
+        }
+        return true;
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public boolean find(String userName, String email, ArrayList<AccInformation> arrList) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(AccInformation a : arrList ){
+            if(a.getUsername().equals(userName)){
+                //Show username already taken dialog
+                //wip
+                System.out.println("Exist in database.");
+                return true;
+            }
+            if(a.getEmail().equals(email)){
+                //Show email already taken dialog
+                //wip
+                System.out.println("Exist in database.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean findInDatabase(String username, String password, ArrayList<AccInformation> arrList) {
+        for(AccInformation a : arrList){
+            if(a.getUsername().equals(username) && a.getPassword().equals(password))
+                return true;
+        }
+        return false;
+    }
     /**
      * Creates new form LoginForm
      */
-    private AccountData arrAccounts = new AccountData();
-
+//    ArrayList<AccInformation> acc = AccountData
+   
     
-    
-    public LoginForm() {
+    public LoginForm(ArrayList<AccInformation> arrList1) {
+        arrList = arrList1;
+//            this.openRegis = openRegist;
         initComponents();
-        arrAccounts = new AccountData();
-        arrAccounts.add("Phong", "admin", "admin");
+       
         //Set cho khi ung dung chay se o giua màn hình 
         
         this.setLocationRelativeTo(null);      
@@ -473,20 +513,23 @@ public class LoginForm extends javax.swing.JFrame {
             loginErrorDialog.setTitle("Error");
             loginErrorDialog.pack();
             loginErrorDialog.setLocationRelativeTo(null);
+            for(AccInformation a : arrList){
+                System.out.println(a.getUsername()+ " " + a.getPassword());
+            }
         }else{
 //            if(usernameTextField.getText().equals(arrAccounts))
 //            int confirmLogin = 0;
 //            
-                if(arrAccounts.find(usernameTextField.getText(), PasswordField.getText())){
-//                    RegisterForm registerForm = new RegisterForm();
+            
+                if(findInDatabase(usernameTextField.getText(), PasswordField.getText(), arrList)){
+//                    RegisterForm registerForm = new RegisterForm(arrList);
 //                    registerForm.setVisible(true);
 //                    registerForm.pack();
 //                    registerForm.setLocationRelativeTo(null);
 //                    confirmLogin = 1;
 //                    break;
                     System.exit(0);
-            }
-            else{
+            }else{
             loginErrorDialog1.setVisible(true);
             loginErrorDialog1.setTitle("Error");
             loginErrorDialog1.pack();
@@ -541,12 +584,12 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-         RegisterForm registerForm = new RegisterForm();
+         RegisterForm registerForm = new RegisterForm(arrList);
                     registerForm.setVisible(true);
                     registerForm.pack();
                     registerForm.setLocationRelativeTo(null);
-                    this.dispose();
-                    
+                    dispose();
+//                    openRegis.openRegister();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
@@ -579,7 +622,8 @@ public class LoginForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginForm().setVisible(true);
+                ArrayList<AccInformation> arrAcc = new ArrayList<>();
+                new LoginForm(arrAcc).setVisible(true);
             }
         });
     }
@@ -614,4 +658,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JPanel titlePanelLoginErrorDialog1;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
+//    public interface IOpenRegister{
+//    public void openRegister();
+//}
 }
