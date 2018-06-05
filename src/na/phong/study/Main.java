@@ -11,7 +11,7 @@ package na.phong.study;
  */
 public class Main {
         public static void main(String[] args) {
-            System.out.println("Console log: ");
+            System.out.println("Console log + test: ");
         new MainGUI().setVisible(true);
     }
 
