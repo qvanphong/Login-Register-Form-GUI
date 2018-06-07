@@ -3,26 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
+ /*
 WIP: 
 Show username/email already taken.
 Show email isn't in correct format.
 Show password's length is to short (8+)
 Show username or name or email have special symbol
-Show that the accept term checkbox isn't checked.
 
-*/
+ */
 package na.phong.study;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
  * @author qvanphong
  */
 public class RegisterForm extends javax.swing.JFrame {
+
     LoginForm lgf = new LoginForm();
+    RegisterChecker checker = new RegisterChecker();
     UserValidate userValidate;
+    String triggerBox = null;
+
+    public String getTriggerBox() {
+        return triggerBox;
+    }
+
+    public void setTriggerBox(String triggerBox) {
+        this.triggerBox = triggerBox;
+    }
 
     public RegisterForm(UserValidate existAccData) {
 //        arrList = arr;
@@ -35,6 +46,20 @@ public class RegisterForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        registerErrorDialog = new javax.swing.JDialog();
+        titlePanelLoginErrorDialog = new javax.swing.JPanel();
+        lblTitle1 = new javax.swing.JLabel();
+        lblClose1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblRegisterErrorDialog = new javax.swing.JLabel();
+        btnOkRegisterErrorDialog = new javax.swing.JButton();
+        registerCheckboxErrorDialog = new javax.swing.JDialog();
+        titlePanelLoginErrorDialog1 = new javax.swing.JPanel();
+        lblTitle2 = new javax.swing.JLabel();
+        lblClose2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblRegisterErrorDialog1 = new javax.swing.JLabel();
+        btnOkRegisterErrorDialog1 = new javax.swing.JButton();
         titlePanel = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
@@ -54,6 +79,199 @@ public class RegisterForm extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
+        registerErrorDialog.setUndecorated(true);
+
+        titlePanelLoginErrorDialog.setBackground(new java.awt.Color(248, 148, 6));
+
+        lblTitle1.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle1.setText("Login Error");
+
+        lblClose1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        lblClose1.setForeground(new java.awt.Color(51, 51, 51));
+        lblClose1.setText("X");
+        lblClose1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblClose1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout titlePanelLoginErrorDialogLayout = new javax.swing.GroupLayout(titlePanelLoginErrorDialog);
+        titlePanelLoginErrorDialog.setLayout(titlePanelLoginErrorDialogLayout);
+        titlePanelLoginErrorDialogLayout.setHorizontalGroup(
+            titlePanelLoginErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLoginErrorDialogLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblClose1)
+                .addGap(16, 16, 16))
+        );
+        titlePanelLoginErrorDialogLayout.setVerticalGroup(
+            titlePanelLoginErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLoginErrorDialogLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(titlePanelLoginErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle1)
+                    .addComponent(lblClose1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(34, 49, 63));
+
+        lblRegisterErrorDialog.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblRegisterErrorDialog.setForeground(new java.awt.Color(255, 255, 255));
+        lblRegisterErrorDialog.setText("All information should be insert");
+
+        btnOkRegisterErrorDialog.setBackground(new java.awt.Color(89, 171, 227));
+        btnOkRegisterErrorDialog.setForeground(new java.awt.Color(255, 255, 255));
+        btnOkRegisterErrorDialog.setText("OK");
+        btnOkRegisterErrorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOkRegisterErrorDialogMouseClicked(evt);
+            }
+        });
+        btnOkRegisterErrorDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkRegisterErrorDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(153, Short.MAX_VALUE)
+                .addComponent(btnOkRegisterErrorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(144, 144, 144))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(lblRegisterErrorDialog)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(lblRegisterErrorDialog)
+                .addGap(18, 18, 18)
+                .addComponent(btnOkRegisterErrorDialog)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout registerErrorDialogLayout = new javax.swing.GroupLayout(registerErrorDialog.getContentPane());
+        registerErrorDialog.getContentPane().setLayout(registerErrorDialogLayout);
+        registerErrorDialogLayout.setHorizontalGroup(
+            registerErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titlePanelLoginErrorDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        registerErrorDialogLayout.setVerticalGroup(
+            registerErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerErrorDialogLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(titlePanelLoginErrorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        registerCheckboxErrorDialog.setUndecorated(true);
+
+        titlePanelLoginErrorDialog1.setBackground(new java.awt.Color(248, 148, 6));
+
+        lblTitle2.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
+        lblTitle2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle2.setText("Login Error");
+
+        lblClose2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        lblClose2.setForeground(new java.awt.Color(51, 51, 51));
+        lblClose2.setText("X");
+        lblClose2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblClose2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout titlePanelLoginErrorDialog1Layout = new javax.swing.GroupLayout(titlePanelLoginErrorDialog1);
+        titlePanelLoginErrorDialog1.setLayout(titlePanelLoginErrorDialog1Layout);
+        titlePanelLoginErrorDialog1Layout.setHorizontalGroup(
+            titlePanelLoginErrorDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLoginErrorDialog1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitle2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblClose2)
+                .addGap(16, 16, 16))
+        );
+        titlePanelLoginErrorDialog1Layout.setVerticalGroup(
+            titlePanelLoginErrorDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLoginErrorDialog1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(titlePanelLoginErrorDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle2)
+                    .addComponent(lblClose2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(34, 49, 63));
+
+        lblRegisterErrorDialog1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblRegisterErrorDialog1.setForeground(new java.awt.Color(255, 255, 255));
+        lblRegisterErrorDialog1.setText("You should accept our terms.");
+
+        btnOkRegisterErrorDialog1.setBackground(new java.awt.Color(89, 171, 227));
+        btnOkRegisterErrorDialog1.setForeground(new java.awt.Color(255, 255, 255));
+        btnOkRegisterErrorDialog1.setText("OK");
+        btnOkRegisterErrorDialog1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOkRegisterErrorDialog1MouseClicked(evt);
+            }
+        });
+        btnOkRegisterErrorDialog1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkRegisterErrorDialog1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnOkRegisterErrorDialog1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblRegisterErrorDialog1)
+                        .addGap(63, 63, 63))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(lblRegisterErrorDialog1)
+                .addGap(18, 18, 18)
+                .addComponent(btnOkRegisterErrorDialog1)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout registerCheckboxErrorDialogLayout = new javax.swing.GroupLayout(registerCheckboxErrorDialog.getContentPane());
+        registerCheckboxErrorDialog.getContentPane().setLayout(registerCheckboxErrorDialogLayout);
+        registerCheckboxErrorDialogLayout.setHorizontalGroup(
+            registerCheckboxErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titlePanelLoginErrorDialog1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        registerCheckboxErrorDialogLayout.setVerticalGroup(
+            registerCheckboxErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerCheckboxErrorDialogLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(titlePanelLoginErrorDialog1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -291,17 +509,32 @@ public class RegisterForm extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
         if (acceptTermCheckBox.isSelected() && !usernameTextField.getText().equals("") && !fullNameTextField.getText().equals("")
-                && !jPasswordField1.getText().equals("") && !jPasswordField2.getText().equals("") && !emailTextField.getText().equals("")
-                && (jPasswordField1.getText().equals(jPasswordField2.getText()))) {
+                && !jPasswordField1.getText().equals("") && !jPasswordField2.getText().equals("") && !emailTextField.getText().equals("")) {
             if (!userValidate.find(usernameTextField.getText(), emailTextField.getText())) {
-                userValidate.add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText());
-                System.out.println(usernameTextField.getText() + " added.");
-                lgf.setVisible(true);
-                lgf.pack();
-                lgf.setLocationRelativeTo(null);
-                this.dispose();
+                if (checker.passwordCheck(jPasswordField1.getText(), jPasswordField2.getText())) {
+                    userValidate.add(fullNameTextField.getText(), usernameTextField.getText(), jPasswordField1.getText(), emailTextField.getText());
+                    System.out.println(usernameTextField.getText() + " added.");
+
+                    if (triggerBox == "main") {
+                        this.dispose();
+                    } else {
+                        this.dispose();
+                        lgf.setVisible(true);
+                        lgf.pack();
+                        lgf.setLocationRelativeTo(null);
+                    }
+                }
             }
 
+        }else if(!acceptTermCheckBox.isSelected() && (usernameTextField.getText().equals("") || fullNameTextField.getText().equals("")
+                && jPasswordField1.getText().equals("") || jPasswordField2.getText().equals("") || emailTextField.getText().equals(""))){
+            registerErrorDialog.setVisible(true);
+            registerErrorDialog.pack();
+            registerErrorDialog.setLocationRelativeTo(null);
+        }else if(!acceptTermCheckBox.isSelected()){
+            registerCheckboxErrorDialog.setVisible(true);
+            registerCheckboxErrorDialog.pack();
+            registerCheckboxErrorDialog.setLocationRelativeTo(null);
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
@@ -334,25 +567,71 @@ public class RegisterForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void lblClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose1MouseClicked
+        // TODO add your handling code here:
+        //        System.exit(0);
+        registerErrorDialog.dispose();
+    }//GEN-LAST:event_lblClose1MouseClicked
+
+    private void btnOkRegisterErrorDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkRegisterErrorDialogMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnOkRegisterErrorDialogMouseClicked
+
+
+    private void btnOkRegisterErrorDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkRegisterErrorDialogActionPerformed
+        // TODO add your handling code here:
+        registerErrorDialog.dispose();
+    }//GEN-LAST:event_btnOkRegisterErrorDialogActionPerformed
+
+    private void lblClose2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose2MouseClicked
+        // TODO add your handling code here:
+//         registerCheckboxErrorDialog.dispose();
+    }//GEN-LAST:event_lblClose2MouseClicked
+
+    private void btnOkRegisterErrorDialog1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkRegisterErrorDialog1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOkRegisterErrorDialog1MouseClicked
+
+    private void btnOkRegisterErrorDialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkRegisterErrorDialog1ActionPerformed
+        // TODO add your handling code here:
+        registerCheckboxErrorDialog.dispose();
+        
+    }//GEN-LAST:event_btnOkRegisterErrorDialog1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acceptTermCheckBox;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JButton btnOkRegisterErrorDialog;
+    private javax.swing.JButton btnOkRegisterErrorDialog1;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField fullNameTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblClose1;
+    private javax.swing.JLabel lblClose2;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblRegisterErrorDialog;
+    private javax.swing.JLabel lblRegisterErrorDialog1;
     private javax.swing.JLabel lblRetype;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitle2;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JDialog registerCheckboxErrorDialog;
+    private javax.swing.JDialog registerErrorDialog;
     private javax.swing.JPanel titlePanel;
+    private javax.swing.JPanel titlePanelLoginErrorDialog;
+    private javax.swing.JPanel titlePanelLoginErrorDialog1;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

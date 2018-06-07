@@ -535,6 +535,7 @@ public class LoginForm extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         RegisterForm registerForm = new RegisterForm(userValidate);
+        registerForm.setTriggerBox("login");
         registerForm.setVisible(true);
         registerForm.pack();
         registerForm.setLocationRelativeTo(null);

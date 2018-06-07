@@ -164,6 +164,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         rgf.setVisible(true);
+        rgf.setTriggerBox("main");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
